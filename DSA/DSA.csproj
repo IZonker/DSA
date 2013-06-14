@@ -40,6 +40,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="DataStructures\CollectionBase.cs" />
+    <Compile Include="DataStructures\Hashtables\LinearProbingHashST.cs" />
+    <Compile Include="DataStructures\Hashtables\SeparateChainingHashST.cs" />
+    <Compile Include="DataStructures\Hashtables\SequentialSearchST.cs" />
+    <Compile Include="DataStructures\Lists\DoublyLinkedList.cs" />
+    <Compile Include="DataStructures\Lists\DoublyLinkedListNode.cs" />
+    <Compile Include="DataStructures\Lists\SinglyLinkedList.cs" />
+    <Compile Include="DataStructures\Lists\SinglyLinkedListNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
