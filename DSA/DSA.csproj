@@ -39,6 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\Searching\BinarySearch.cs" />
+    <Compile Include="Algorithms\Sorting\BubbleSort.cs" />
+    <Compile Include="Algorithms\Sorting\DutchNationalFlagProblem.cs" />
+    <Compile Include="Algorithms\Sorting\InsertionSort.cs" />
+    <Compile Include="Algorithms\Sorting\MergeSort.cs" />
+    <Compile Include="Algorithms\Sorting\QuickSort.cs" />
+    <Compile Include="Algorithms\Sorting\SelectionSort.cs" />
+    <Compile Include="Algorithms\Sorting\ShellSort.cs" />
+    <Compile Include="Algorithms\Sorting\SortingBase.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="DataStructures\CollectionBase.cs" />
     <Compile Include="DataStructures\Hashtables\LinearProbingHashST.cs" />
@@ -50,6 +59,7 @@
     <Compile Include="DataStructures\Lists\SinglyLinkedListNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
