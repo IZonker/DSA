@@ -5,75 +5,75 @@ namespace DSA.Algorithms.Sorting
 {
     public static partial class Sorting 
     {
-        private static void Merge<T>(IList<T> a, IList<T> aux, int lo, int mid, int hi) where T : IComparable
+        private static void Merge<T>(IList<T> items, IList<T> aux, int lo, int mid, int hi) where T : IComparable
         {
-            
             // copy to aux[]
             for (int k = lo; k <= hi; k++)
             {
-                aux[k] = a[k];
+                aux[k] = items[k];
             }
 
-            // merge back to a[]
+            // merge back to items[]
             int i = lo, j = mid + 1;
             for (int k = lo; k <= hi; k++)
             {
-                if      (i > mid)              a[k] = aux[j++];
-                else if (j > hi)               a[k] = aux[i++];
-                else if (Less(aux[j], aux[i])) a[k] = aux[j++];
-                else                           a[k] = aux[i++];
+                if      (i > mid)              items[k] = aux[j++];
+                else if (j > hi)               items[k] = aux[i++];
+                else if (Less(aux[j], aux[i])) items[k] = aux[j++];
+                else                           items[k] = aux[i++];
             }
         }
 
-        // mergesort a[lo..hi] using auxiliary array aux[lo..hi]
-        private static void MergeSort<T>(IList<T> a, IList<T> aux, int lo, int hi) where T : IComparable
+        // mergesort items[lo..hi] using auxiliary array aux[lo..hi]
+        private static void MergeSort<T>(IList<T> items, IList<T> aux, int lo, int hi) where T : IComparable
         {
-            if (hi <= lo) return;
+            if (hi <= lo) 
+                return;
 
             int mid = lo + (hi - lo) / 2;
-            MergeSort(a, aux, lo, mid);
-            MergeSort(a, aux, mid + 1, hi);
-            Merge(a, aux, lo, mid, hi);
+            MergeSort(items, aux, lo, mid);
+            MergeSort(items, aux, mid + 1, hi);
+            Merge(items, aux, lo, mid, hi);
         }
 
         /// <summary>
         /// O(N log N)
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="a"></param>
-        public static void MergeSort<T>(this IList<T> a) where T : IComparable
+        /// <param name="items"></param>
+        public static void MergeSort<T>(this IList<T> items) where T : IComparable
         {
             IList<T> aux = new List<T>();
-            for (int i = 0; i < a.Count; i++)
+            for (int i = 0; i < items.Count; i++)
                 aux.Add(default(T));
 
-            MergeSort(a, aux, 0, a.Count - 1);
+            MergeSort(items, aux, 0, items.Count - 1);
         }
 
-        private static void MergeBU<T>(IList<T> a, IList<T> aux, int lo, int mid, int hi) where T : IComparable
+        private static void MergeBU<T>(IList<T> items, IList<T> aux, int lo, int mid, int hi) where T : IComparable
         {
             // copy to aux[]
             for (int k = lo; k <= hi; k++) 
             {
-                aux[k] = a[k];
+                aux[k] = items[k];
             }
 
-            // merge back to a[]
+            // merge back to items[]
             int i = lo, j = mid + 1;
             for (int k = lo; k <= hi; k++)
             {
-                if (i > mid) a[k] = aux[j++];
-                else if (j > hi) a[k] = aux[i++];
-                else if (Less(aux[j], aux[i])) a[k] = aux[j++];
-                else a[k] = aux[i++];
+                if (i > mid) items[k] = aux[j++];
+                else if (j > hi) items[k] = aux[i++];
+                else if (Less(aux[j], aux[i])) items[k] = aux[j++];
+                else items[k] = aux[i++];
             }
         }
 
-        public static void MergeSortBU<T>(this IList<T> a) where T : IComparable
+        public static void MergeSortBU<T>(this IList<T> items) where T : IComparable
         {
-            int N = a.Count;
+            int N = items.Count;
             IList<T> aux = new List<T>();
-            for (int i = 0; i < a.Count; i++)
+            for (int i = 0; i < items.Count; i++)
                 aux.Add(default(T));
 
             for (int n = 1; n < N; n = n + n)
@@ -83,7 +83,7 @@ namespace DSA.Algorithms.Sorting
                     int lo = i;
                     int m = i + n - 1;
                     int hi = Math.Min(i + n + n - 1, N - 1);
-                    MergeBU(a, aux, lo, m, hi);
+                    MergeBU(items, aux, lo, m, hi);
                 }
             }
         }
