@@ -39,6 +39,11 @@ namespace DSA.Algorithms.Sorting
                 a.Print();
         }
 
+        /// <summary>
+        /// N*logN
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="a"></param>
         public static void MergeSort<T>(this IList<T> a) where T : IComparable
         {
             ccc = 0;

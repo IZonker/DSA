@@ -5,6 +5,11 @@ namespace DSA.Algorithms.Sorting
 {
     public static partial class Sorting
     {
+        /// <summary>
+        /// N^2/2
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
         public static void SelectionSort<T>(this IList<T> list) where T : IComparable<T>
         {
             int length = list.Count;

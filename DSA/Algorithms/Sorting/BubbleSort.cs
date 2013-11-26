@@ -5,6 +5,12 @@ namespace DSA.Algorithms.Sorting
 {
     public static partial class Sorting
     {
+        /// <summary>
+        /// N^2
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <returns></returns>
         public static IList<T> BubbleSort<T>(this IList<T> list) where T : IComparable
         {
             for (int i = 1; i < list.Count; i++)
@@ -13,7 +19,7 @@ namespace DSA.Algorithms.Sorting
                 {
                     if (list[j].CompareTo(list[j + 1]) > 0)
                     {
-                        Swap<T>(list, j, j+1);
+                        Swap(list, j, j+1);
                     }
                 }
             }

@@ -218,5 +218,24 @@ namespace DSA.DataStructures.Lists
                 node = node.NextNode;
             } 
         }
+
+        public void Reverse(SinglyLinkedListNode<T> head)
+        {
+            SinglyLinkedListNode<T> current = head;
+            SinglyLinkedListNode<T> result = null;
+
+            while(current!=null)
+            {
+                var next = current.NextNode;
+                
+                current.NextNode = result;
+                result = current;
+
+                current = next;
+            }
+
+            Head = result;
+
+        }
     }
 }

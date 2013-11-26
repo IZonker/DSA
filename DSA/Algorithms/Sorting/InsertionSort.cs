@@ -6,6 +6,11 @@ namespace DSA.Algorithms.Sorting
 
     public static partial class Sorting
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
         public static void InsertionSort<T>(this IList<T> list) where T : IComparable<T>
         {
             int length = list.Count;
