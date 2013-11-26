@@ -26,13 +26,11 @@ namespace DSA.Algorithms.Sorting
         private static void Shuffle<T>(IList<T> items)
         {
             int N = items.Count;
-            Random random = new Random();
+            var random = new Random();
             for (int i = 0; i < N; i++)
             {
                 int r = i + random.Next(N - i);
-                T temp = items[i];
-                items[i] = items[r];
-                items[r] = temp;
+                Swap(items, i, r);
             }           
         } 
     }

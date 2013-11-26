@@ -5,6 +5,11 @@ namespace DSA.Algorithms.Sorting
 {
     public static partial class Sorting
     {
+        /// <summary>
+        /// O(N log N)
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="items"></param>
         public static void QuickSort<T>(this IList<T> items) where T : IComparable
         {
            // Shuffle(items);           
@@ -20,7 +25,6 @@ namespace DSA.Algorithms.Sorting
             
             QuickSort(items, low, j - 1);
             QuickSort(items, j + 1, high);
-            
            
          }
 
