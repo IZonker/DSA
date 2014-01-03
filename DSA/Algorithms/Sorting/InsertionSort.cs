@@ -7,7 +7,7 @@ namespace DSA.Algorithms.Sorting
     public static partial class Sorting
     {
         /// <summary>
-        /// 
+        /// O(N ^ 2)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="list"></param>

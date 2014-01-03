@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace DSA.DataStructures.Lists
 {
@@ -20,6 +17,10 @@ namespace DSA.DataStructures.Lists
             }
         }        
 
+        /// <summary>
+        /// O(1)
+        /// </summary>
+        /// <param name="value"></param>
         public void AddFirst(T value)
         {
             var node = new SinglyLinkedListNode<T>(value);
@@ -37,6 +38,10 @@ namespace DSA.DataStructures.Lists
             Count++;
         }
 
+        /// <summary>
+        /// O(1)
+        /// </summary>
+        /// <param name="value"></param>
         public void AddLast(T value)
         {
             var node = new SinglyLinkedListNode<T>(value);
@@ -54,6 +59,10 @@ namespace DSA.DataStructures.Lists
             Count++;
         }
 
+        /// <summary>
+        /// O(n)
+        /// </summary>
+        /// <returns></returns>
         public bool RemoveFirst()
         {
             if(IsEmpty) 
@@ -72,6 +81,11 @@ namespace DSA.DataStructures.Lists
             return true;
         }
 
+        /// <summary>
+        /// O(1)
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="value"></param>
         public void AddAfter(SinglyLinkedListNode<T> node, T value)
         {
             var newNode = new SinglyLinkedListNode<T>(value);
@@ -95,9 +109,10 @@ namespace DSA.DataStructures.Lists
             Count++;
         }
 
-        public void AddBefore(SinglyLinkedListNode<T> node, T Value)
+
+        public void AddBefore(SinglyLinkedListNode<T> node, T value)
         {
-            var newNode = new SinglyLinkedListNode<T>(Value);
+            var newNode = new SinglyLinkedListNode<T>(value);
 
             if (node == Head )
             {
@@ -146,6 +161,11 @@ namespace DSA.DataStructures.Lists
             return true;
         }
 
+        /// <summary>
+        /// O(n)
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public bool Remove(T value)
         {
             if (IsEmpty)
@@ -219,9 +239,21 @@ namespace DSA.DataStructures.Lists
             } 
         }
 
-        public void Reverse(SinglyLinkedListNode<T> head)
+        public void print()
         {
-            SinglyLinkedListNode<T> current = head;
+
+            var node = Head;
+            while (node != null)
+            {
+                Console.Write(node.Value);
+                node = node.NextNode;
+            }
+            Console.WriteLine();
+        }
+
+        public void Reverse()
+        {
+            SinglyLinkedListNode<T> current = Head;
             SinglyLinkedListNode<T> result = null;
 
             while(current!=null)
@@ -230,12 +262,11 @@ namespace DSA.DataStructures.Lists
                 
                 current.NextNode = result;
                 result = current;
-
+                
                 current = next;
             }
 
             Head = result;
-
         }
     }
 }

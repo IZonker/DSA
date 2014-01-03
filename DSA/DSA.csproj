@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\GCD.cs" />
     <Compile Include="Algorithms\Searching\BinarySearch.cs" />
     <Compile Include="Algorithms\Sorting\BubbleSort.cs" />
     <Compile Include="Algorithms\Sorting\DutchNationalFlagProblem.cs" />
