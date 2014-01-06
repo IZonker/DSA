@@ -5,26 +5,26 @@ namespace DSA.Algorithms.Sorting
 {
     public static partial class Sorting 
     {
-        private static void Merge<T>(IList<T> items, IList<T> aux, int lo, int mid, int hi) where T : IComparable
+        private static void Merge<T>(IList<T> items, IList<T> aux, int min, int middle, int max) where T : IComparable
         {
             // copy to aux[]
-            for (int k = lo; k <= hi; k++)
+            for (int k = min; k <= max; k++)
             {
                 aux[k] = items[k];
             }
 
             // merge back to items[]
-            int i = lo, j = mid + 1;
-            for (int k = lo; k <= hi; k++)
+            int i = min, j = middle + 1;
+            for (int k = min; k <= max; k++)
             {
-                if      (i > mid)              items[k] = aux[j++];
-                else if (j > hi)               items[k] = aux[i++];
+                if      (i > middle)           items[k] = aux[j++];
+                else if (j > max)              items[k] = aux[i++];
                 else if (Less(aux[j], aux[i])) items[k] = aux[j++];
                 else                           items[k] = aux[i++];
             }
         }
 
-        // mergesort items[lo..hi] using auxiliary array aux[lo..hi]
+        // mergesort items[min..max] using auxiliary array aux[min..max]
         private static void MergeSort<T>(IList<T> items, IList<T> aux, int lo, int hi) where T : IComparable
         {
             if (hi <= lo) 
@@ -50,6 +50,7 @@ namespace DSA.Algorithms.Sorting
             MergeSort(items, aux, 0, items.Count - 1);
         }
 
+        #region
         private static void MergeBU<T>(IList<T> items, IList<T> aux, int lo, int mid, int hi) where T : IComparable
         {
             // copy to aux[]
@@ -87,5 +88,7 @@ namespace DSA.Algorithms.Sorting
                 }
             }
         }
+        #endregion
+
     }
 }
