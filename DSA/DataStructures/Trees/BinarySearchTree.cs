@@ -8,7 +8,8 @@ namespace DSA.DataStructures.Trees
         public BinaryTreeNode<TKey, TValue> Root { get; set; }
 
         /// <summary>
-        /// O(log N) for balanced trees
+        /// Best case:  O(log N) (balanced tree)
+        /// Worst case: O(n)
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
@@ -25,7 +26,8 @@ namespace DSA.DataStructures.Trees
         }
 
         /// <summary>
-        /// O(log N)
+        /// Best case:  O(log N) (balanced tree)
+        /// Worst case: O(n)
         /// </summary>
         /// <param name="key"></param>
         public bool Remove(TKey key)
@@ -98,6 +100,13 @@ namespace DSA.DataStructures.Trees
             return Find(key, Root);
         }
 
+        /// <summary>
+        /// Best case:  O(log N) (balanced tree)
+        /// Worst case: O(n)
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="root"></param>
+        /// <returns></returns>
         public BinaryTreeNode<TKey, TValue> Find(TKey key, BinaryTreeNode<TKey, TValue> root)
         {
             if (root == null)
@@ -128,7 +137,8 @@ namespace DSA.DataStructures.Trees
         }
 
         /// <summary>
-        /// O(log N) for balanced trees
+        /// Best case:  O(log N) (balanced tree)
+        /// Worst case: O(n)
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
