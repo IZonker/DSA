@@ -58,8 +58,11 @@
     <Compile Include="DataStructures\Lists\DoublyLinkedListNode.cs" />
     <Compile Include="DataStructures\Lists\SinglyLinkedList.cs" />
     <Compile Include="DataStructures\Lists\SinglyLinkedListNode.cs" />
+    <Compile Include="DataStructures\Trees\AVLTree.cs" />
+    <Compile Include="DataStructures\Trees\AVLTreeNode.cs" />
     <Compile Include="DataStructures\Trees\BinarySearchTree.cs" />
     <Compile Include="DataStructures\Trees\BinaryTreeNode.cs" />
+    <Compile Include="DataStructures\Trees\IBinaryTreeNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -2,15 +2,15 @@
 
 namespace DSA.DataStructures.Trees
 {
-    public class BinaryTreeNode<TKey, TValue> where TKey : IComparable
+    public class BinaryTreeNode<TKey, TValue> : IBinaryTreeNode<TKey, TValue> where TKey : IComparable
     {
         public TKey Key { get; set; }
 
         public TValue Value { get; set; }
 
-        public BinaryTreeNode<TKey, TValue> Left { get; set; }
+        public IBinaryTreeNode<TKey, TValue> Left { get; set; }
 
-        public BinaryTreeNode<TKey, TValue> Right { get; set; }
+        public IBinaryTreeNode<TKey, TValue> Right { get; set; }
 
         public BinaryTreeNode(){}
 

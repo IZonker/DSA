@@ -5,7 +5,9 @@ namespace DSA.DataStructures.Trees
 {
     public class BinarySearchTree<TKey, TValue> where TKey: IComparable
     {
-        public BinaryTreeNode<TKey, TValue> Root { get; set; }
+        public IBinaryTreeNode<TKey, TValue> Root { get; set; }
+
+        #region Insertion
 
         /// <summary>
         /// Best case:  O(log N) (balanced tree)
@@ -13,7 +15,7 @@ namespace DSA.DataStructures.Trees
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public void Add(TKey key, TValue value = default(TValue))
+        public virtual void Add(TKey key, TValue value = default(TValue))
         {
             if (Root == null)
             {
@@ -30,10 +32,54 @@ namespace DSA.DataStructures.Trees
         /// Worst case: O(n)
         /// </summary>
         /// <param name="key"></param>
-        public bool Remove(TKey key)
+        /// <param name="value"></param>
+        private void InsertNode(TKey key, TValue value = default(TValue))
         {
-            BinaryTreeNode<TKey, TValue> nodeToRemove = Root;
-            BinaryTreeNode<TKey, TValue> parentNode = null;
+            var current = Root;
+
+            while (true)
+            {
+                if (key.CompareTo(current.Key) < 0)
+                {
+                    if (current.Left != null)
+                    {
+                        current = current.Left;
+                    }
+                    else
+                    {
+                        current.Left = new BinaryTreeNode<TKey, TValue>(key, value);
+                        return;
+                    }
+                }
+                else if (key.CompareTo(current.Key) > 0)
+                {
+                    if (current.Right != null)
+                    {
+                        current = current.Right;
+                    }
+                    else
+                    {
+                        current.Right = new BinaryTreeNode<TKey, TValue>(key, value);
+                        return;
+                    }
+                }
+                else
+                    return;
+            }
+        }
+
+        #endregion
+
+        #region Deletion
+        /// <summary>
+        /// Best case:  O(log N) (balanced tree)
+        /// Worst case: O(n)
+        /// </summary>
+        /// <param name="key"></param>
+        public virtual bool Remove(TKey key)
+        {
+            IBinaryTreeNode<TKey, TValue> nodeToRemove = Root;
+            IBinaryTreeNode<TKey, TValue> parentNode = null;
 
             if (key.CompareTo(Root.Key) == 0)
             { 
@@ -95,7 +141,11 @@ namespace DSA.DataStructures.Trees
             return true;
         }
 
-        public BinaryTreeNode<TKey, TValue> Find(TKey key)
+        #endregion
+
+        #region Searching
+
+        public IBinaryTreeNode<TKey, TValue> Find(TKey key)
         {
             return Find(key, Root);
         }
@@ -107,7 +157,7 @@ namespace DSA.DataStructures.Trees
         /// <param name="key"></param>
         /// <param name="root"></param>
         /// <returns></returns>
-        public BinaryTreeNode<TKey, TValue> Find(TKey key, BinaryTreeNode<TKey, TValue> root)
+        public IBinaryTreeNode<TKey, TValue> Find(TKey key, IBinaryTreeNode<TKey, TValue> root)
         {
             if (root == null)
                 return null;
@@ -120,7 +170,7 @@ namespace DSA.DataStructures.Trees
             return root;
         }
 
-        private BinaryTreeNode<TKey, TValue> FindParent(TKey key, BinaryTreeNode<TKey, TValue> root)
+        private IBinaryTreeNode<TKey, TValue> FindParent(TKey key, IBinaryTreeNode<TKey, TValue> root)
         {
             if (key.CompareTo(root.Key) < 0)
             {
@@ -136,60 +186,16 @@ namespace DSA.DataStructures.Trees
             return key.CompareTo(root.Right.Key) == 0 ? root : FindParent(key, root.Right);
         }
 
-        /// <summary>
-        /// Best case:  O(log N) (balanced tree)
-        /// Worst case: O(n)
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="value"></param>
-        private void InsertNode(TKey key, TValue value = default(TValue))
-        {
-            var current = Root;
+        #endregion
 
-            while(true)
-            {
-                if (key.CompareTo(current.Key) < 0)
-                {
-                    if (current.Left != null)
-                    {
-                        current = current.Left;
-                    }
-                    else
-                    {
-                        current.Left = new BinaryTreeNode<TKey, TValue>(key, value);
-                        return;
-                    }
-                }
-                else if (key.CompareTo(current.Key) > 0)
-                {
-                    if (current.Right != null)
-                    {
-                        current = current.Right;
-                    }
-                    else
-                    {
-                        current.Right = new BinaryTreeNode<TKey, TValue>(key, value);
-                        return;
-                    }
-                }
-                else
-                    return;
-                
-            }
-        }
-
-        public void Print()
-        {
-            if(Root!=null)
-                Console.WriteLine(Root.ToString());
-        }
+        #region Tree Properties
 
         public int Size()
         {
             return Size(Root);
         }
-
-        public int Size(BinaryTreeNode<TKey, TValue> node)
+        
+        public int Size(IBinaryTreeNode<TKey, TValue> node)
         {
             if (node == null)
                 return 0;
@@ -197,7 +203,11 @@ namespace DSA.DataStructures.Trees
             return 1 + Size(node.Left) + Size(node.Right);
         }
 
-        public List<TKey> PreorderTraversal(BinaryTreeNode<TKey, TValue> node, List<TKey> list)
+        #endregion
+
+        #region Tree Traversal
+
+        public List<TKey> PreorderTraversal(IBinaryTreeNode<TKey, TValue> node, List<TKey> list)
         {
             if (node != null)
             {
@@ -208,7 +218,7 @@ namespace DSA.DataStructures.Trees
             return list;
         }
 
-        public List<TKey> InorderTraversal(BinaryTreeNode<TKey, TValue> node, List<TKey> list)
+        public List<TKey> InorderTraversal(IBinaryTreeNode<TKey, TValue> node, List<TKey> list)
         {
             if (node != null)
             {
@@ -219,7 +229,7 @@ namespace DSA.DataStructures.Trees
             return list;
         }
 
-        public List<TKey> PostorderInorderTraversal(BinaryTreeNode<TKey, TValue> node, List<TKey> list)
+        public List<TKey> PostorderInorderTraversal(IBinaryTreeNode<TKey, TValue> node, List<TKey> list)
         {
             if (node != null)
             {
@@ -230,9 +240,9 @@ namespace DSA.DataStructures.Trees
             return list;
         }
 
-        public List<TValue> BreadthFirstTraversal(BinaryTreeNode<TKey, TValue> node)
+        public List<TValue> BreadthFirstTraversal(IBinaryTreeNode<TKey, TValue> node)
         {
-            var unvisited = new Queue<BinaryTreeNode<TKey, TValue>>();
+            var unvisited = new Queue<IBinaryTreeNode<TKey, TValue>>();
             var visited = new List<TValue>();
 
             while (node != null)
@@ -253,5 +263,34 @@ namespace DSA.DataStructures.Trees
 
             return visited;
         }
+
+        #endregion
+
+        #region Printing
+
+        public void Print()
+        {
+            Print(Root, 0);
+        }
+
+        private void Print(IBinaryTreeNode<TKey, TValue> root, int depth)
+        {
+            if (root == null)
+            {
+                for (int i = 0; i < depth; i++)
+                    Console.Write('\t');
+                Console.WriteLine('.'); // I use ~ to mean null
+            }
+            else
+            {
+                Print(root.Right, depth + 1);
+                for (int i = 0; i < depth; i++)
+                    Console.Write('\t');
+                Console.WriteLine(root.Key);
+                Print(root.Left, depth + 1);
+            }
+        }
+
+        #endregion
     }
 }

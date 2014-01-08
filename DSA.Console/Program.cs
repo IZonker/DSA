@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DSA.Algorithms;
 using DSA.Algorithms.Searching;
+using DSA.Algorithms.Sorting;
 using DSA.DataStructures.Lists;
 using DSA.DataStructures.Trees;
 
@@ -23,7 +24,10 @@ namespace DSA.Console
             tree.Print();
            bool d = tree.Remove(10);
            // tree.Print();
-            System.Console.WriteLine(tree.Size());
+
+            var elements = new List<int>() {5, 8, 9, 6, 1, 2, 3, 7, 8, 12, 3};
+            elements.MergeSort();
+            System.Console.WriteLine(string.Join(", ", elements));
 
             System.Console.Read();
         }

@@ -5,90 +5,65 @@ namespace DSA.Algorithms.Sorting
 {
     public static partial class Sorting 
     {
-        private static void Merge<T>(IList<T> items, IList<T> aux, int min, int middle, int max) where T : IComparable
+        /// <summary>
+        /// O(N log N)
+        /// </summary>
+        /// <param name="elements"></param>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        public static void MergeSort<T>(this List<T> elements) where T : IComparable
         {
-            // copy to aux[]
-            for (int k = min; k <= max; k++)
-            {
-                aux[k] = items[k];
-            }
-
-            // merge back to items[]
-            int i = min, j = middle + 1;
-            for (int k = min; k <= max; k++)
-            {
-                if      (i > middle)           items[k] = aux[j++];
-                else if (j > max)              items[k] = aux[i++];
-                else if (Less(aux[j], aux[i])) items[k] = aux[j++];
-                else                           items[k] = aux[i++];
-            }
-        }
-
-        // mergesort items[min..max] using auxiliary array aux[min..max]
-        private static void MergeSort<T>(IList<T> items, IList<T> aux, int lo, int hi) where T : IComparable
-        {
-            if (hi <= lo) 
-                return;
-
-            int mid = lo + (hi - lo) / 2;
-            MergeSort(items, aux, lo, mid);
-            MergeSort(items, aux, mid + 1, hi);
-            Merge(items, aux, lo, mid, hi);
+            MergeSort(elements, 0, elements.Count - 1);
         }
 
         /// <summary>
         /// O(N log N)
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="items"></param>
-        public static void MergeSort<T>(this IList<T> items) where T : IComparable
+        /// <param name="elements"></param>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        public static void MergeSort<T>(this List<T> elements, int left, int right) where T : IComparable
         {
-            IList<T> aux = new List<T>();
-            for (int i = 0; i < items.Count; i++)
-                aux.Add(default(T));
-
-            MergeSort(items, aux, 0, items.Count - 1);
-        }
-
-        #region
-        private static void MergeBU<T>(IList<T> items, IList<T> aux, int lo, int mid, int hi) where T : IComparable
-        {
-            // copy to aux[]
-            for (int k = lo; k <= hi; k++) 
+            if (left < right)
             {
-                aux[k] = items[k];
-            }
+                int middle = (left + right) / 2;
 
-            // merge back to items[]
-            int i = lo, j = mid + 1;
-            for (int k = lo; k <= hi; k++)
-            {
-                if (i > mid) items[k] = aux[j++];
-                else if (j > hi) items[k] = aux[i++];
-                else if (Less(aux[j], aux[i])) items[k] = aux[j++];
-                else items[k] = aux[i++];
-            }
-        }
+                MergeSort(elements, left,       middle);
+                MergeSort(elements, middle + 1, right);
 
-        public static void MergeSortBU<T>(this IList<T> items) where T : IComparable
-        {
-            int N = items.Count;
-            IList<T> aux = new List<T>();
-            for (int i = 0; i < items.Count; i++)
-                aux.Add(default(T));
+                //Merge
+                var leftArray = new T[middle - left + 1];
+                var rightArray = new T[right - middle];
+                
+                Array.Copy(elements.ToArray(), left,       leftArray,  0, middle - left + 1);
+                Array.Copy(elements.ToArray(), middle + 1, rightArray, 0, right - middle);
 
-            for (int n = 1; n < N; n = n + n)
-            {
-                for (int i = 0; i < N - n; i += n + n)
+                int i = 0;
+                int j = 0;
+                for (int k = left; k < right + 1; k++)
                 {
-                    int lo = i;
-                    int m = i + n - 1;
-                    int hi = Math.Min(i + n + n - 1, N - 1);
-                    MergeBU(items, aux, lo, m, hi);
+                    if (i == leftArray.Length)
+                    {
+                        elements[k] = rightArray[j];
+                        j++;
+                    }
+                    else if (j == rightArray.Length)
+                    {
+                        elements[k] = leftArray[i];
+                        i++;
+                    }
+                    else if (leftArray[i].CompareTo(rightArray[j]) <= 0)
+                    {
+                        elements[k] = leftArray[i];
+                        i++;
+                    }
+                    else
+                    {
+                        elements[k] = rightArray[j];
+                        j++;
+                    }
                 }
             }
         }
-        #endregion
-
     }
 }
