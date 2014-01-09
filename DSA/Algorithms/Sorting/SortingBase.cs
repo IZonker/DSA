@@ -23,7 +23,7 @@ namespace DSA.Algorithms.Sorting
             return (v.CompareTo(w) < 0);
         }
 
-        private static void Shuffle<T>(IList<T> items)
+        public static void Shuffle<T>(this List<T> items)
         {
             int N = items.Count;
             var random = new Random();
@@ -33,5 +33,7 @@ namespace DSA.Algorithms.Sorting
                 Swap(items, i, r);
             }           
         } 
+
+
     }
 }

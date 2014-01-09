@@ -27,7 +27,7 @@ namespace DSA.Algorithms
                 if (x > y)
                     x = x % y;
                 else if (y > x)
-                    y = y%x;
+                    y = y % x;
             }
 
             if (x == 0)

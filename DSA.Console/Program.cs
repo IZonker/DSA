@@ -25,9 +25,10 @@ namespace DSA.Console
            bool d = tree.Remove(10);
            // tree.Print();
 
-            var elements = new List<int>() {5, 8, 9, 6, 1, 2, 3, 7, 8, 12, 3};
-            elements.MergeSort();
-            System.Console.WriteLine(string.Join(", ", elements));
+            var elements = new List<int>() {4,3,1,7,5,6,2};
+            elements.Print();
+            elements.ShellSort();
+            elements.Print();
 
             System.Console.Read();
         }

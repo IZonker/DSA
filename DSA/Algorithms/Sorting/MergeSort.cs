@@ -9,11 +9,13 @@ namespace DSA.Algorithms.Sorting
         /// O(N log N)
         /// </summary>
         /// <param name="elements"></param>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
         public static void MergeSort<T>(this List<T> elements) where T : IComparable
         {
             MergeSort(elements, 0, elements.Count - 1);
+        }
+        static void Print<T>(T[] elements)
+        {
+            Console.Write(string.Join(",", elements) + " \t");
         }
 
         /// <summary>
@@ -27,10 +29,10 @@ namespace DSA.Algorithms.Sorting
             if (left < right)
             {
                 int middle = (left + right) / 2;
-
+                
                 MergeSort(elements, left,       middle);
                 MergeSort(elements, middle + 1, right);
-
+                
                 //Merge
                 var leftArray = new T[middle - left + 1];
                 var rightArray = new T[right - middle];
@@ -38,8 +40,12 @@ namespace DSA.Algorithms.Sorting
                 Array.Copy(elements.ToArray(), left,       leftArray,  0, middle - left + 1);
                 Array.Copy(elements.ToArray(), middle + 1, rightArray, 0, right - middle);
 
+                Print(leftArray);
+                Print(rightArray);
+
                 int i = 0;
                 int j = 0;
+
                 for (int k = left; k < right + 1; k++)
                 {
                     if (i == leftArray.Length)
@@ -61,7 +67,7 @@ namespace DSA.Algorithms.Sorting
                     {
                         elements[k] = rightArray[j];
                         j++;
-                    }
+                    } 
                 }
             }
         }

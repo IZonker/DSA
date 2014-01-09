@@ -11,25 +11,25 @@ namespace DSA.Algorithms.Sorting
         /// The worst case: O(N ^ 2):
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="list"></param>
-        public static void ShellSort<T>(this IList<T> list) where T : IComparable<T>
+        /// <param name="elements"></param>
+        public static void ShellSort<T>(this IList<T> elements) where T : IComparable<T>
         {
-            int length = list.Count;
-            int h = 1;
-            while (h < length / 3) { h = 3 * h + 1; }
+            int length = elements.Count;
+            int gap = length / 2;
             
-            while (h >= 1)
+            while (gap >= 1)
             {
-                for (int i = h; i < length; i++)
+                for (int i = gap; i < length; i++)
                 {
-                    for(int j = i; j >= h && list[j].CompareTo(list[j-h]) < 0; j-=h)
+                    for(int j = i; j >= gap; j-= gap)
                     {
-                        list.Swap(j, j - h);
-                        list.Print();
+                        if (elements[j].CompareTo(elements[j - gap]) < 0)
+                        {
+                            elements.Swap(j, j - gap);
+                        }
                     }
                 }
-                
-                h = h / 3;
+                gap /= 2;
             }        
         }
     }
