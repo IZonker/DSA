@@ -52,7 +52,6 @@
     <Compile Include="Algorithms\Sorting\SelectionSort.cs" />
     <Compile Include="Algorithms\Sorting\ShellSort.cs" />
     <Compile Include="Algorithms\Sorting\SortingBase.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="DataStructures\CollectionBase.cs" />
     <Compile Include="DataStructures\Hashtables\LinearProbingHashST.cs" />
     <Compile Include="DataStructures\Hashtables\SeparateChainingHashST.cs" />
