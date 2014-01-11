@@ -42,6 +42,7 @@
     <Compile Include="Algorithms\Math\Combinatorics\Combinations.cs" />
     <Compile Include="Algorithms\Math\Combinatorics\Permutations.cs" />
     <Compile Include="Algorithms\Math\GCD.cs" />
+    <Compile Include="Algorithms\Puzzles\Strings.cs" />
     <Compile Include="Algorithms\Puzzles\TowersOfHanoi.cs" />
     <Compile Include="Algorithms\Searching\BinarySearch.cs" />
     <Compile Include="Algorithms\Sorting\BubbleSort.cs" />

@@ -14,10 +14,6 @@ namespace DSA.Algorithms.Sorting
         {
             MergeSort(elements, 0, elements.Count - 1);
         }
-        static void Print<T>(T[] elements)
-        {
-            Console.Write(string.Join(",", elements) + " \t");
-        }
 
         /// <summary>
         /// O(N log N)
