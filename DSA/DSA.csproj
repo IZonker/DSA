@@ -39,7 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\Math\Combinatorics\Combinations.cs" />
+    <Compile Include="Algorithms\Math\Combinatorics\Permutations.cs" />
     <Compile Include="Algorithms\Math\GCD.cs" />
+    <Compile Include="Algorithms\Puzzles\TowersOfHanoi.cs" />
     <Compile Include="Algorithms\Searching\BinarySearch.cs" />
     <Compile Include="Algorithms\Sorting\BubbleSort.cs" />
     <Compile Include="Algorithms\Sorting\DutchNationalFlagProblem.cs" />

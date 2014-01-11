@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DSA.Algorithms.Sorting
 {
@@ -9,7 +10,7 @@ namespace DSA.Algorithms.Sorting
         /// O(N log N)
         /// </summary>
         /// <param name="elements"></param>
-        public static void MergeSort<T>(this List<T> elements) where T : IComparable
+        public static void MergeSort<T>(this IList<T> elements) where T : IComparable
         {
             MergeSort(elements, 0, elements.Count - 1);
         }
@@ -24,7 +25,7 @@ namespace DSA.Algorithms.Sorting
         /// <param name="elements"></param>
         /// <param name="left"></param>
         /// <param name="right"></param>
-        public static void MergeSort<T>(this List<T> elements, int left, int right) where T : IComparable
+        public static void MergeSort<T>(this IList<T> elements, int left, int right) where T : IComparable
         {
             if (left < right)
             {
@@ -39,9 +40,6 @@ namespace DSA.Algorithms.Sorting
                 
                 Array.Copy(elements.ToArray(), left,       leftArray,  0, middle - left + 1);
                 Array.Copy(elements.ToArray(), middle + 1, rightArray, 0, right - middle);
-
-                Print(leftArray);
-                Print(rightArray);
 
                 int i = 0;
                 int j = 0;

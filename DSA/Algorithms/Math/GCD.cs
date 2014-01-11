@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DSA.Algorithms
+﻿namespace DSA.Algorithms.Math
 {
-    public static class GCD
+    public  static partial class Math
     {
-        public static int EvaluateR(int x, int y)
+        public static int GCDRecursive(int x, int y)
         {
             if (x == 0)
                 return y;
@@ -16,11 +10,11 @@ namespace DSA.Algorithms
                 return x;
 
             if (x > y)
-                return EvaluateR(x % y, y);
-            return EvaluateR(x, y % x);
+                return GCDRecursive(x % y, y);
+            return GCDRecursive(x, y % x);
         }
 
-        public static int Evaluate(int x, int y)
+        public static int GCD(int x, int y)
         {
             while (x != 0 && y != 0)
             {
