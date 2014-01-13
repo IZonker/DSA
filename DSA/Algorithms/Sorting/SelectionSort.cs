@@ -6,7 +6,7 @@ namespace DSA.Algorithms.Sorting
     public static partial class Sorting
     {
         /// <summary>
-        /// N^2/2
+        /// worst, average, best - O(N^2/2)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="list"></param>
@@ -26,7 +26,7 @@ namespace DSA.Algorithms.Sorting
                     }
                 }
 
-                list.Swap<T>(i, min);
+                list.Swap(i, min);
             }
         }
     }

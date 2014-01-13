@@ -7,7 +7,9 @@ namespace DSA.Algorithms.Sorting
     public static partial class Sorting
     {
         /// <summary>
-        /// O(N ^ 2)
+        /// worst - O(N ^ 2/2)
+        /// average - O(N ^ 2/4)
+        /// best - O(N)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="list"></param>
