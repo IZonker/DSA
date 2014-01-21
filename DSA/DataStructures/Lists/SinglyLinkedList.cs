@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace DSA.DataStructures.Lists
 {
-    public class SinglyLinkedList<T> : CollectionBase
+    public class SinglyLinkedList<T> : CollectionBase<T> where T : IComparable<T>
     {
         public SinglyLinkedListNode<T> Head { get; private set; }
 
@@ -15,7 +16,18 @@ namespace DSA.DataStructures.Lists
             {
                 return Head == null;
             }
-        }        
+        }
+
+        #region Insertion
+
+        /// <summary>
+        /// O(1)
+        /// </summary>
+        /// <param name="item"></param>
+        public override void Add(T item)
+        {
+            AddLast(item);
+        }
 
         /// <summary>
         /// O(1)
@@ -60,28 +72,6 @@ namespace DSA.DataStructures.Lists
         }
 
         /// <summary>
-        /// O(n)
-        /// </summary>
-        /// <returns></returns>
-        public bool RemoveFirst()
-        {
-            if(IsEmpty) 
-                return false;
-
-            if (Count == 1)
-            {
-                Clear();
-            }
-            else
-            {
-                Head = Head.NextNode;
-                Count--;
-            }           
-
-            return true;
-        }
-
-        /// <summary>
         /// O(1)
         /// </summary>
         /// <param name="node"></param>
@@ -109,12 +99,17 @@ namespace DSA.DataStructures.Lists
             Count++;
         }
 
-
+        /// <summary>
+        /// best case -  O(1)
+        /// worst case - O(n)
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="value"></param>
         public void AddBefore(SinglyLinkedListNode<T> node, T value)
         {
             var newNode = new SinglyLinkedListNode<T>(value);
 
-            if (node == Head )
+            if (node == Head)
             {
                 newNode.NextNode = Head;
                 Head = newNode;
@@ -127,12 +122,43 @@ namespace DSA.DataStructures.Lists
                     previousNode = previousNode.NextNode;
                 }
                 newNode.NextNode = previousNode.NextNode;
-                previousNode.NextNode = newNode;               
+                previousNode.NextNode = newNode;
             }
 
             Count++;
         }
 
+        #endregion
+
+        #region Deletion
+
+        /// <summary>
+        /// O(n)
+        /// </summary>
+        /// <returns></returns>
+        public bool RemoveFirst()
+        {
+            if(IsEmpty) 
+                return false;
+
+            if (Count == 1)
+            {
+                Clear();
+            }
+            else
+            {
+                Head = Head.NextNode;
+                Count--;
+            }           
+
+            return true;
+        }
+
+        /// <summary>
+        /// best case - O(1)
+        /// worst case - O(n)
+        /// </summary>
+        /// <returns></returns>
         public bool RemoveLast()
         {
             if (IsEmpty)
@@ -166,7 +192,7 @@ namespace DSA.DataStructures.Lists
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public bool Remove(T value)
+        public override bool Remove(T value)
         {
             if (IsEmpty)
                 return false;
@@ -211,14 +237,35 @@ namespace DSA.DataStructures.Lists
             return false;
         }
 
-        public void Clear()
+        public override void Clear()
         {
             Head = null;
             Tail = null;
             Count = 0;
         }
 
-        public T[] ToArray()
+        #endregion
+
+        #region Searching
+
+        /// <summary>
+        /// O(n)
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public override bool Contains(T value)
+        {
+            foreach (T item in this)
+            {
+                if (item.CompareTo(value) == 0)
+                    return true;
+            }
+            return false;
+        }
+
+        #endregion
+
+        public override T[] ToArray()
         {
             int index=0;
             T[] array = new T[Count];
@@ -229,7 +276,7 @@ namespace DSA.DataStructures.Lists
             return array;
         }
 
-        public override IEnumerator GetEnumerator()
+        public override IEnumerator<T> GetEnumerator()
         {
             var node = Head;
             while (node != null)
@@ -241,7 +288,6 @@ namespace DSA.DataStructures.Lists
 
         public void print()
         {
-
             var node = Head;
             while (node != null)
             {

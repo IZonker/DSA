@@ -12,7 +12,6 @@ namespace DSA.Algorithms.Sorting
         /// <param name="elements"></param>
         public static void QuickSort<T>(this IList<T> elements) where T : IComparable
         {
-           // Shuffle(items);           
             QuickSort(elements, 0, elements.Count - 1);
         }
 

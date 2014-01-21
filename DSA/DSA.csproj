@@ -43,6 +43,8 @@
     <Compile Include="Algorithms\Math\Combinatorics\RecursivePermutations.cs" />
     <Compile Include="Algorithms\Math\Combinatorics\Permutations.cs" />
     <Compile Include="Algorithms\Math\GCD.cs" />
+    <Compile Include="Algorithms\Puzzles\Arrays.cs" />
+    <Compile Include="Algorithms\Puzzles\LinkedLists.cs" />
     <Compile Include="Algorithms\Puzzles\Strings.cs" />
     <Compile Include="Algorithms\Puzzles\TowersOfHanoi.cs" />
     <Compile Include="Algorithms\Searching\BinarySearch.cs" />
@@ -58,6 +60,7 @@
     <Compile Include="DataStructures\Hashtables\LinearProbingHashST.cs" />
     <Compile Include="DataStructures\Hashtables\SeparateChainingHashST.cs" />
     <Compile Include="DataStructures\Hashtables\SequentialSearchST.cs" />
+    <Compile Include="DataStructures\Heaps\Heap.cs" />
     <Compile Include="DataStructures\Lists\DoublyLinkedList.cs" />
     <Compile Include="DataStructures\Lists\DoublyLinkedListNode.cs" />
     <Compile Include="DataStructures\Lists\SinglyLinkedList.cs" />

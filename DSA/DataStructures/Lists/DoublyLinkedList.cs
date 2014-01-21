@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace DSA.DataStructures.Lists
 {
-    public class DoublyLinkedList<T> : CollectionBase
+    public class DoublyLinkedList<T> : CollectionBase<T>
     {
         public DoublyLinkedListNode<T> Head { get; private set; }
 
@@ -147,7 +144,7 @@ namespace DSA.DataStructures.Lists
             return true;
         }
 
-        public bool Remove(T value)
+        public override bool Remove(T value)
         {
             if (IsEmpty)
                 return false;
@@ -189,14 +186,14 @@ namespace DSA.DataStructures.Lists
             return true;
         }
 
-        private void Clear()
+        public override void Clear()
         {
             Head = null;
             Tail = null;
             Count = 0;
         }
 
-        public override IEnumerator GetEnumerator()
+        public override IEnumerator<T> GetEnumerator()
         {
             var node = Head;
             while (node != null)
@@ -204,6 +201,21 @@ namespace DSA.DataStructures.Lists
                 yield return node.Value;
                 node = node.NextNode;
             }
+        }
+
+        public override void Add(T item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool Contains(T item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override T[] ToArray()
+        {
+            throw new NotImplementedException();
         }
     }
 }
